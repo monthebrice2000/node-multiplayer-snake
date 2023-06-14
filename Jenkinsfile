@@ -1,18 +1,26 @@
-node ('ubuntu'){
-    def app
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('tontonlaforce')
+pipeline {
+  agent {
+    node {
+      label 'app'
     }
+  }
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('tontonlaforce')
+  }
+
+  stages {
+
     stage('Cloning Git') {
-        /* Let's make sure we have the repository cloned to our workspace */
-       checkout scm
+      steps {
+        checkout scm
+      }
     }
 
     stage('Build-and-Tag') {
-        steps {
-                sh 'sudo docker build -t tontonlaforce/snake .'
-        }
+      steps {
+        sh 'sudo docker build -t tontonlaforce/snake .'
+      }
     }
-
-
+  }
 }
+
