@@ -1,10 +1,10 @@
 version: '3.3'
 services:
   snake:
-    image: 'tontonlaforce/snake:new'
+    image: 'tontonlaforce/snake:latest'
     environment:
       - "PORT:3000"
     ports:
-      - "80:3000"
+      - "8082:3000"
     volumes:
       - ./:/app
